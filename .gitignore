@@ -1,0 +1,78 @@
+# =========================
+# NEXT.JS / NODE
+# =========================
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# =========================
+# PYTHON / FASTAPI
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# SQLite (if used)
+*.sqlite3
+
+# =========================
+# IDE / OS FILES
+# =========================
+.vscode/
+.idea/
+
+# Mac / Windows junk
+.DS_Store
+Thumbs.db
+
+# =========================
+# TEST / CACHE
+# =========================
+.coverage
+htmlcov/
+.pytest_cache/
+.cache/
+
+# =========================
+# OTHER
+# =========================
+*.swp
+*.bak
+*.tmp
