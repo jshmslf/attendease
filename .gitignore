@@ -39,6 +39,7 @@ venv/
 env/
 ENV/
 .venv/
+myEnv/
 
 # Python packaging
 build/
