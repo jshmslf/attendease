@@ -1,20 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/components/auth-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useClock } from "@/hooks/use-clock";
-import { 
-  Users, 
-  BarChart3, 
-  Settings, 
-  LogOut, 
-  ChevronLeft, 
-  LayoutDashboard, 
-  Search, 
+import {
+  Users,
+  BarChart3,
+  Settings,
+  LogOut,
+  ChevronLeft,
+  LayoutDashboard,
+  Search,
   MoreHorizontal,
   Loader2,
-  GraduationCap,
   Clock
 } from "lucide-react";
 
@@ -39,9 +39,8 @@ export default function TeacherPage() {
       <div className="flex flex-1 overflow-hidden">
         <aside className="w-64 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hidden md:flex flex-col p-6 sticky top-0 h-screen">
           <div className="flex items-center gap-2 mb-10">
-            <div className="w-8 h-8 bg-purple-600 rounded-[var(--radius)] flex items-center justify-center text-white shadow-lg shadow-purple-500/20">
-               <GraduationCap className="w-5 h-5" />
-            </div>
+            <Image src="/logo/logo-1x1-black.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] block dark:hidden" />
+            <Image src="/logo/logo-1x1.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] hidden dark:block" />
             <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-zinc-50">AttendEase</span>
           </div>
 
@@ -101,7 +100,7 @@ export default function TeacherPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
             {[
-              { label: "Total Students", value: "142", trend: "Active", color: "blue" },
+              { label: "Total Students", value: "142", trend: "Active", color: "accent" },
               { label: "Avg. Attendance", value: "89%", trend: "-2% this week", color: "amber" },
               { label: "On-Time Rate", value: "92%", trend: "+5% improve", color: "emerald" },
               { label: "Alerts", value: "3", trend: "Requires action", color: "red" },
@@ -110,9 +109,9 @@ export default function TeacherPage() {
                 <div className="text-zinc-500 dark:text-zinc-400 text-[10px] font-bold uppercase tracking-widest mb-4">{stat.label}</div>
                 <div className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">{stat.value}</div>
                 <div className={`text-[10px] font-bold mt-2 px-2 py-0.5 rounded-full inline-block
-                  ${stat.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' : 
-                    stat.color === 'amber' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600' : 
-                    stat.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600' : 
+                  ${stat.color === 'accent' ? 'bg-[var(--accent-color)]/10 text-[var(--accent-color)]' :
+                    stat.color === 'amber' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600' :
+                    stat.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600' :
                     'bg-red-100 dark:bg-red-900/30 text-red-600'}`}
                 >
                   {stat.trend}
@@ -144,7 +143,7 @@ export default function TeacherPage() {
                 <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
                   {[
                     { name: "CS101: Intro to Programming", time: "09:00 - 10:30", room: "Lab 01", present: "28/30", status: "Completed", color: "emerald" },
-                    { name: "CS302: Database Systems", time: "11:00 - 12:30", room: "Hall A", present: "42/45", status: "In Progress", color: "blue" },
+                    { name: "CS302: Database Systems", time: "11:00 - 12:30", room: "Hall A", present: "42/45", status: "In Progress", color: "accent" },
                     { name: "CS404: Artificial Intelligence", time: "02:00 - 03:30", room: "Room 402", present: "-", status: "Upcoming", color: "zinc" },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors group">
@@ -154,11 +153,11 @@ export default function TeacherPage() {
                       <td className="px-6 py-5 text-sm font-mono text-center font-bold text-zinc-700 dark:text-zinc-300">{row.present}</td>
                       <td className="px-6 py-5">
                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
-                          ${row.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600' : 
-                            row.color === 'blue' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' : 
+                          ${row.color === 'emerald' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600' :
+                            row.color === 'accent' ? 'bg-[var(--accent-color)]/10 text-[var(--accent-color)]' :
                             'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}
                         >
-                           <span className={`w-1.5 h-1.5 rounded-full ${row.color === 'emerald' ? 'bg-emerald-500' : row.color === 'blue' ? 'bg-blue-500 animate-pulse' : 'bg-zinc-400'}`} />
+                           <span className={`w-1.5 h-1.5 rounded-full ${row.color === 'emerald' ? 'bg-emerald-500' : row.color === 'accent' ? 'bg-[var(--accent-color)] animate-pulse' : 'bg-zinc-400'}`} />
                            {row.status}
                         </span>
                       </td>

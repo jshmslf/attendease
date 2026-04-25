@@ -4,6 +4,7 @@
 
 @theme {
   --font-sans: var(--font-geist-sans);
+  --accent-color: #006a61;
   --font-heading: var(--font-figtree);
   --radius: 0.25rem;
 }
@@ -26,7 +27,12 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 }

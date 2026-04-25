@@ -1,17 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/components/auth-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useClock } from "@/hooks/use-clock";
-import { 
-  LayoutDashboard, 
-  Calendar, 
-  Clock, 
-  LogOut, 
-  ChevronLeft, 
-  BookOpen, 
-  MapPin, 
+import {
+  LayoutDashboard,
+  Calendar,
+  Clock,
+  LogOut,
+  ChevronLeft,
+  MapPin,
   Loader2,
   TrendingUp
 } from "lucide-react";
@@ -38,9 +38,8 @@ export default function StudentPage() {
       <div className="flex flex-1 overflow-hidden">
         <aside className="w-64 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hidden md:flex flex-col p-6 sticky top-0 h-screen">
           <div className="flex items-center gap-2 mb-10">
-            <div className="w-8 h-8 bg-emerald-600 rounded-[var(--radius)] flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
-               <BookOpen className="w-5 h-5" />
-            </div>
+            <Image src="/logo/logo-1x1-black.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] block dark:hidden" />
+            <Image src="/logo/logo-1x1.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] hidden dark:block" />
             <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-zinc-50">AttendEase</span>
           </div>
 

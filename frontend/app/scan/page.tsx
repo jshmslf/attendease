@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/components/auth-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Camera, LogOut, Loader2, ArrowLeft, Clock } from "lucide-react";
@@ -47,7 +48,7 @@ export default function ScanPage() {
   if (authLoading) {
     return (
       <div className="h-screen flex items-center justify-center bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+        <Loader2 className="w-8 h-8 animate-spin text-[var(--accent-color)]" />
       </div>
     );
   }
@@ -62,9 +63,8 @@ export default function ScanPage() {
           <Link href="/" className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-[var(--radius)] transition-colors mr-1">
             <ArrowLeft className="w-5 h-5 text-zinc-400" />
           </Link>
-          <div className="w-8 h-8 bg-blue-600 rounded-[var(--radius)] flex items-center justify-center">
-            <Camera className="w-5 h-5 text-white" />
-          </div>
+          <Image src="/logo/logo-1x1-black.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] block dark:hidden" />
+          <Image src="/logo/logo-1x1.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] hidden dark:block" />
           <div>
             <h1 className="font-bold tracking-tight text-sm leading-none">AttendEase GATEWAY</h1>
             <p className="text-[10px] text-zinc-500 uppercase tracking-widest mt-1">Speed Scan Mode Active</p>
@@ -136,7 +136,7 @@ export default function ScanPage() {
               <p className="text-xl font-bold mt-1 text-zinc-900 dark:text-zinc-50">Recent Scans</p>
             </div>
             <div className="text-right">
-              <span className="text-3xl font-bold text-blue-600 dark:text-blue-500">{logs.length}</span>
+              <span className="text-3xl font-bold text-[var(--accent-color)]">{logs.length}</span>
               <p className="text-[10px] text-zinc-500 dark:text-zinc-400 font-bold uppercase tracking-widest">Captured</p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function ScanPage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center font-bold text-blue-600 dark:text-blue-400 border border-zinc-200 dark:border-zinc-700 text-sm shrink-0">
+                      <div className="w-10 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center font-bold text-[var(--accent-color)] border border-zinc-200 dark:border-zinc-700 text-sm shrink-0">
                         {log.Name ? log.Name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase() : "??"}
                       </div>
                       <div>
@@ -183,7 +183,7 @@ export default function ScanPage() {
           <div className="p-4 bg-zinc-50 dark:bg-zinc-900/30 border-t border-zinc-200 dark:border-zinc-800">
             <div className="flex justify-between items-center text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
               <span>Auto-refreshing every 3s</span>
-              <span>v1.2.0-stable</span>
+              <span>v0.1.0-stable</span>
             </div>
           </div>
         </aside>

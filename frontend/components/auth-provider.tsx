@@ -14,7 +14,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string) => Promise<void>;
+  login: (identifier: string, password: string, role: "ADMIN" | "STUDENT") => Promise<string | null>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -49,33 +49,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string) => {
+  const TEMP_ACCOUNTS = {
+    ADMIN: { identifier: "admin", password: "admin" },
+    STUDENT: { identifier: "student", password: "student" },
+  };
+
+  const login = async (identifier: string, password: string, role: "ADMIN" | "STUDENT"): Promise<string | null> => {
     setIsLoading(true);
-    // Mock authentication logic based on email
-    setTimeout(() => {
-      let role: Role = "STUDENT";
-      let name = "Student User";
-
-      if (email.toLowerCase().includes("admin")) {
-        role = "ADMIN";
-        name = "School Administrator";
-      } else if (email.toLowerCase().includes("teacher")) {
-        role = "TEACHER";
-        name = "Class Instructor";
-      }
-
-      const expiresAt = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hours
-      const newUser: User = { email, role, name, expiresAt };
-      setUser(newUser);
-      localStorage.setItem("attendease_user", JSON.stringify(newUser));
-      
-      // Redirect based on role
-      if (role === "ADMIN") router.push("/admin");
-      else if (role === "TEACHER") router.push("/teacher");
-      else router.push("/student");
-      
-      setIsLoading(false);
-    }, 1000);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const account = TEMP_ACCOUNTS[role];
+        if (identifier !== account.identifier || password !== account.password) {
+          setIsLoading(false);
+          resolve("Invalid credentials. Please try again.");
+          return;
+        }
+        const name = role === "ADMIN" ? "School Administrator" : "Student User";
+        const expiresAt = new Date().getTime() + 24 * 60 * 60 * 1000;
+        const newUser: User = { email: identifier, role, name, expiresAt };
+        setUser(newUser);
+        localStorage.setItem("attendease_user", JSON.stringify(newUser));
+        if (role === "ADMIN") router.push("/admin");
+        else router.push("/student");
+        setIsLoading(false);
+        resolve(null);
+      }, 800);
+    });
   };
 
   const logout = () => {

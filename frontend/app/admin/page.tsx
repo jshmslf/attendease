@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/components/auth-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useClock } from "@/hooks/use-clock";
@@ -42,9 +43,8 @@ export default function AdminPage() {
       <div className="flex flex-1 overflow-hidden">
         <aside className="w-64 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hidden md:flex flex-col p-6 sticky top-0 h-screen">
           <div className="flex items-center gap-2 mb-10">
-            <div className="w-8 h-8 bg-amber-600 rounded-[var(--radius)] flex items-center justify-center text-white font-extrabold shadow-lg shadow-amber-500/20">
-               A
-            </div>
+            <Image src="/logo/logo-1x1-black.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] block dark:hidden" />
+            <Image src="/logo/logo-1x1.png" alt="AttendEase" width={32} height={32} className="rounded-[var(--radius)] hidden dark:block" />
             <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-zinc-50">AttendEase</span>
           </div>
 
@@ -109,7 +109,7 @@ export default function AdminPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {[
-              { label: "Active Nodes", value: "24", sub: "Cameras & Scanners", icon: Activity, color: "blue" },
+              { label: "Active Nodes", value: "24", sub: "Cameras & Scanners", icon: Activity, color: "accent" },
               { label: "Total Students", value: "2,840", sub: "98% Registered", icon: Users, color: "purple" },
               { label: "Daily Scans", value: "8,122", sub: "+4% vs yesterday", icon: Database, color: "amber" },
               { label: "Alerts", value: "0", sub: "No critical issues", icon: CheckCircle2, color: "emerald" },
@@ -117,7 +117,7 @@ export default function AdminPage() {
               <div key={i} className="p-6 bg-white dark:bg-zinc-900 rounded-[calc(var(--radius)+4px)] border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div className="text-zinc-500 dark:text-zinc-400 text-[10px] font-bold uppercase tracking-widest">{stat.label}</div>
-                  <stat.icon className={`w-4 h-4 text-${stat.color}-500`} />
+                  <stat.icon className={`w-4 h-4 ${stat.color === 'accent' ? 'text-[var(--accent-color)]' : `text-${stat.color}-500`}`} />
                 </div>
                 <div className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">{stat.value}</div>
                 <div className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 mt-2 uppercase tracking-tight">{stat.sub}</div>
@@ -134,8 +134,8 @@ export default function AdminPage() {
               <div className="space-y-8">
                  {[
                    { name: "Computer Science", value: 96, color: "emerald" },
-                   { name: "Business School", value: 88, color: "blue" },
-                   { name: "Fine Arts", value: 82, color: "amber" },
+                   { name: "Business School", value: 88, color: "accent" },
+                   { name: "Fine Arts", value: 0, color: "amber" },
                    { name: "Engineering", value: 94, color: "emerald" },
                  ].map((dept, i) => (
                    <div key={i} className="space-y-3">
@@ -144,7 +144,7 @@ export default function AdminPage() {
                          <span className="font-extrabold text-zinc-900 dark:text-zinc-50">{dept.value}%</span>
                       </div>
                       <div className="w-full h-2.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                         <div className={`h-full bg-${dept.color}-500 rounded-full transition-all duration-1000`} style={{ width: `${dept.value}%` }} />
+                         <div className={`h-full rounded-full transition-all duration-1000 ${dept.color === 'accent' ? 'bg-[var(--accent-color)]' : `bg-${dept.color}-500`}`} style={{ width: `${dept.value}%` }} />
                       </div>
                    </div>
                  ))}
@@ -166,16 +166,16 @@ export default function AdminPage() {
                         <div className="px-2 py-1 bg-emerald-500/10 text-emerald-600 text-[9px] font-bold rounded-[calc(var(--radius)-2px)] uppercase tracking-tight">Active</div>
                      </div>
                   </div>
-                  <div className="p-5 bg-zinc-50 dark:bg-zinc-800/30 rounded-[var(--radius)] border border-zinc-100 dark:border-zinc-800 hover:border-blue-500/20 transition-colors">
+                  <div className="p-5 bg-zinc-50 dark:bg-zinc-800/30 rounded-[var(--radius)] border border-zinc-100 dark:border-zinc-800 hover:border-[var(--accent-color)]/20 transition-colors">
                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-[var(--radius)] flex items-center justify-center text-blue-600">
+                        <div className="w-12 h-12 bg-[var(--accent-color)]/10 rounded-[var(--radius)] flex items-center justify-center text-[var(--accent-color)]">
                            <Info className="w-6 h-6" />
                         </div>
                         <div className="flex-1">
                            <div className="text-sm font-bold text-zinc-900 dark:text-zinc-50">Ethical Data Policy</div>
                            <div className="text-xs text-zinc-500 mt-1 font-medium">Automatic Purge Configured</div>
                         </div>
-                        <div className="px-2 py-1 bg-blue-500/10 text-blue-600 text-[9px] font-bold rounded-[calc(var(--radius)-2px)] uppercase tracking-tight">Verified</div>
+                        <div className="px-2 py-1 bg-[var(--accent-color)]/10 text-[var(--accent-color)] text-[9px] font-bold rounded-[calc(var(--radius)-2px)] uppercase tracking-tight">Verified</div>
                      </div>
                   </div>
                   <div className="p-5 bg-zinc-50 dark:bg-zinc-800/30 rounded-[var(--radius)] border border-zinc-100 dark:border-zinc-800 hover:border-amber-500/20 transition-colors">
